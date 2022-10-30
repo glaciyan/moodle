@@ -27,7 +27,7 @@ const goTo = () => {
         <Course v-for="kurs of filteredKurse" :course="kurs.item" />
       </div>
     </div>
-    <div class="my-6">
+    <div class="my-6 w-max mx-auto">
       <a class="text-blue-400 hover:underline fous:underline mr-2" href="https://github.com/glaciyan/moodle">github</a>
       <a class="text-blue-400 hover:underline fous:underline" href="https://glaciyan.cc">glaciyan.cc</a>
     </div>
