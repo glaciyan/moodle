@@ -13,7 +13,10 @@ const { allCourses, isLoading } = useFetchCourses();
       <h1 class="md:text-2xl text-xl">Moodle Kurse</h1>
       <TheLinks />
     </div>
-    <SearchableCourses v-if="!isLoading && allCourses" :initCourses="allCourses" />
-    <Spinner class="mx-auto" v-else/>
+    <SearchableCourses
+      v-if="!isLoading && allCourses"
+      :initCourses="allCourses"
+    />
+    <Spinner class="mx-auto" v-else />
   </div>
 </template>
