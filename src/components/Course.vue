@@ -22,5 +22,6 @@ const randomDarkRingColor = function () {
     :href="`https://moodle.htwg-konstanz.de/moodle/course/view.php?id=${course.id}`"
   >
     <p>{{ course.name }}</p>
+    <p class="text-slate-400">id: {{course.id}}</p>
   </a>
 </template>
