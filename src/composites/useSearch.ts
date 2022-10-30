@@ -1,14 +1,14 @@
-import {computed, ref, watch} from "vue";
+import {computed, Ref, ref, watch} from "vue";
 import Fuse from "fuse.js";
-import kurse from "../assets/kurse.json";
+import { Course } from "../types/Course";
 
-export function useSearch() {
+export function useSearch(data: Ref<Course[] | null>) {
     const search = ref("");
     const emptySearch = computed(() => search.value.length === 0);
 
-    let fuse: Fuse<typeof kurse[number]>;
+    let fuse: Fuse<Course>;
 
-    const filteredKurse = ref<Fuse.FuseResult<typeof kurse[number]>[] | null>(null);
+    const filteredKurse = ref<Fuse.FuseResult<Course>[] | null>(null);
     const noResults = ref(false);
 
     watch(search, async (value) => {
@@ -16,9 +16,9 @@ export function useSearch() {
             filteredKurse.value = null;
         }
 
-        if (!fuse) {
+        if (!fuse && data.value) {
             const Fuse = (await import("fuse.js")).default;
-            fuse = new Fuse(kurse, {
+            fuse = new Fuse(data.value, {
                 keys: ["name"],
             });
         }

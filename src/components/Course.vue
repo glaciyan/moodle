@@ -18,7 +18,6 @@ const randomDarkRingColor = function () {
   <a
     class="block ring-0 mt-3 px-6 py-4 rounded-lg transition-shadow bg-slate-50 shadow hover:ring-2"
     :style="randomDarkRingColor()"
-    :key="course.id"
     :href="`https://moodle.htwg-konstanz.de/moodle/course/view.php?id=${course.id}`"
   >
     <p>{{ course.name }}</p>
