@@ -1,5 +1,6 @@
 import type Fuse from "fuse.js";
 import { computed, ref, watch } from "vue";
+import { throttledWatch } from "@vueuse/core";
 import type { Course } from "../types/Course";
 
 export function useSearch(data: Course[]) {
@@ -11,7 +12,7 @@ export function useSearch(data: Course[]) {
   const courses = ref(data);
   const noResults = computed(() => courses.value.length === 0 && !emptySearch);
 
-  watch(search, async (value) => {
+  throttledWatch(search, async (value) => {
     if (value.length === 0) {
       courses.value = data;
       return;
@@ -32,6 +33,8 @@ export function useSearch(data: Course[]) {
     } else {
       courses.value = result.map((r) => r.item);
     }
+  }, {
+      throttle: 300
   });
 
   return { search, emptySearch, courses, noResults };
