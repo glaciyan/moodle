@@ -3,7 +3,7 @@ defineProps<{
   course: { name: string; id: number };
 }>();
 
-const randomDarkRingColor = function () {
+const randomDarkRingColor = function() {
   const random = (min: number, max: number) =>
     Math.floor(Math.random() * (max - min) + min);
 
@@ -21,6 +21,6 @@ const randomDarkRingColor = function () {
     :href="`https://moodle.htwg-konstanz.de/moodle/course/view.php?id=${course.id}`"
   >
     <p>{{ course.name }}</p>
-    <p class="text-slate-400">id: {{course.id}}</p>
+    <p class="text-slate-400">id: {{ course.id }}</p>
   </a>
 </template>

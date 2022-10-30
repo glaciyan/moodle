@@ -1,38 +1,38 @@
-import {computed, Ref, ref, watch} from "vue";
-import Fuse from "fuse.js";
-import { Course } from "../types/Course";
+import type Fuse from "fuse.js";
+import { computed, ref, watch } from "vue";
+import type { Course } from "../types/Course";
 
-export function useSearch(data: Ref<Course[] | null>) {
-    const search = ref("");
-    const emptySearch = computed(() => search.value.length === 0);
+export function useSearch(data: Course[]) {
+  let fuse: Fuse<Course>;
 
-    let fuse: Fuse<Course>;
+  const search = ref("");
+  const emptySearch = computed(() => search.value.length === 0);
 
-    const filteredKurse = ref<Fuse.FuseResult<Course>[] | null>(null);
-    const noResults = ref(false);
+  const courses = ref(data);
+  const noResults = computed(() => courses.value.length === 0 && !emptySearch);
 
-    watch(search, async (value) => {
-        if (value === "") {
-            filteredKurse.value = null;
-        }
+  watch(search, async (value) => {
+    if (value.length === 0) {
+      courses.value = data;
+      return;
+    }
 
-        if (!fuse && data.value) {
-            const Fuse = (await import("fuse.js")).default;
-            fuse = new Fuse(data.value, {
-                keys: ["name"],
-            });
-        }
+    if (!fuse) {
+      const Fuse = (await import("fuse.js")).default;
+      fuse = new Fuse(data, {
+        keys: ["name"]
+      });
+    }
 
-        const result = fuse.search(value);
+    const result = fuse.search(value);
+    console.log(result);
 
-        if (result.length === 0) {
-            filteredKurse.value = [];
-            noResults.value = true;
-        } else {
-            filteredKurse.value = result;
-            noResults.value = false;
-        }
-    });
+    if (result.length === 0) {
+      courses.value = [];
+    } else {
+      courses.value = result.map((r) => r.item);
+    }
+  });
 
-    return {search, emptySearch, filteredKurse, noResults};
+  return { search, emptySearch, courses, noResults };
 }
