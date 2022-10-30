@@ -23,7 +23,7 @@ const goTo = () => {
     <SearchBar v-model="search" @keydown.enter="goTo" />
     <div class="min-h-screen">
       <p v-if="noResults">Keine Ergebnisse</p>
-      <div v-else>
+      <div v-else class="relative">
         <TransitionGroup>
           <Course v-for="course of courses" :course="course" :key="course.id" />
         </TransitionGroup>

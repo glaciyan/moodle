@@ -16,7 +16,7 @@ const randomDarkRingColor = function() {
 
 <template>
   <a
-    class="block ring-0 mt-3 px-6 py-4 rounded-lg transition-shadow bg-slate-50 shadow hover:ring-2"
+    class="block ring-0 mt-3 px-6 py-4 rounded-lg transition-shadow bg-slate-50 shadow hover:ring-2 w-full"
     :style="randomDarkRingColor()"
     :href="`https://moodle.htwg-konstanz.de/moodle/course/view.php?id=${course.id}`"
   >
