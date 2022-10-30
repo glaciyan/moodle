@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SearchableCourses from "./components/SearchableCourses.vue";
 import TheLinks from "./components/TheLinks.vue";
+import Spinner from "./components/Spinner.vue";
 import { useFetchCourses } from "./composites/useFetchCoures";
 
 const { allCourses, isLoading } = useFetchCourses();
@@ -13,5 +14,6 @@ const { allCourses, isLoading } = useFetchCourses();
       <TheLinks />
     </div>
     <SearchableCourses v-if="!isLoading && allCourses" :initCourses="allCourses" />
+    <Spinner class="mx-auto" v-else/>
   </div>
 </template>
