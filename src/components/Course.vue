@@ -16,11 +16,11 @@ const randomDarkRingColor = () => {
 
 <template>
   <a
-    class="block ring-0 mt-3 px-6 py-4 rounded-lg transition-shadow bg-slate-50 shadow hover:ring-2 w-full"
+    class="block ring-0 mt-3 px-6 py-4 rounded-lg transition-shadow bg-slate-50 dark:bg-neutral-800 shadow hover:ring-2 w-full"
     :style="randomDarkRingColor()"
     :href="`https://moodle.htwg-konstanz.de/moodle/course/view.php?id=${course.id}`"
   >
-    <p>{{ course.name }}</p>
-    <p class="text-slate-400">id: {{ course.id }}</p>
+    <p class="dark:text-neutral-200">{{ course.name }}</p>
+    <p class="text-slate-400 dark:text-neutral-500">id: {{ course.id }}</p>
   </a>
 </template>
