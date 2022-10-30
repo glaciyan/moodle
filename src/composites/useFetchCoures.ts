@@ -6,7 +6,7 @@ export function useFetchCourses() {
   const isLoading = ref(false);
 
   onMounted(async () => {
-    const result = await fetch("kurse.json");
+    const result = await fetch("https://moodle-worker-api.glaciyan.cc");
     if (result.ok) {
       allCourses.value = (await result.json()) as CourseType[];
     }
