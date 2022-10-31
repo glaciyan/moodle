@@ -7,7 +7,7 @@ import type { Course as CourseType } from "../types/Course";
 
 const props = defineProps<{ initCourses: CourseType[] }>();
 
-const { search, emptySearch, courses, noResults } = useSearch(props.initCourses);
+const { search, courses } = useSearch(props.initCourses);
 
 const goTo = () => {
   if (courses.value?.[0]) {
@@ -22,8 +22,7 @@ const goTo = () => {
   <div>
     <SearchBar v-model="search" @keydown.enter="goTo" />
     <div class="min-h-screen">
-      <p v-if="noResults">Keine Ergebnisse</p>
-      <div v-else class="relative">
+      <div class="relative">
         <TransitionGroup>
           <Course v-for="course of courses" :course="course" :key="course.id" />
         </TransitionGroup>

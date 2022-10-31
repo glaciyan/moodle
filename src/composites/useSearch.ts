@@ -10,7 +10,7 @@ export function useSearch(data: Course[]) {
   const emptySearch = computed(() => search.value.length === 0);
 
   const courses = ref(data);
-  const noResults = computed(() => courses.value.length === 0 && !emptySearch);
+  const noResults = computed(() => courses.value.length === 0);
 
   throttledWatch(search, async (value) => {
     if (value.length === 0) {
