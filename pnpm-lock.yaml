@@ -12,11 +12,13 @@ specifiers:
   vite: ^3.2.0
   vue: ^3.2.41
   vue-tsc: ^1.0.9
+  zod: ^3.19.1
 
 dependencies:
   '@vueuse/core': 9.4.0_vue@3.2.41
   fuse.js: 6.6.2
   vue: 3.2.41
+  zod: 3.19.1
 
 devDependencies:
   '@vitejs/plugin-vue': 3.2.0_vite@3.2.1+vue@3.2.41
@@ -1078,3 +1080,7 @@ packages:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
     dev: true
+
+  /zod/3.19.1:
+    resolution: {integrity: sha512-LYjZsEDhCdYET9ikFu6dVPGp2YH9DegXjdJToSzD9rO6fy4qiRYFoyEYwps88OseJlPyl2NOe2iJuhEhL7IpEA==}
+    dev: false
