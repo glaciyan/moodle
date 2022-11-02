@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { Course } from "../types/Course";
+
 defineProps<{
-  course: { name: string; id: number };
+  course: Course;
 }>();
 
 const randomDarkRingColor = () => {
@@ -12,15 +14,20 @@ const randomDarkRingColor = () => {
     random(150, 255)
   )},${random(100, 255)})`;
 };
+
+const getHref = (course: Course) =>
+  course.meta.link ??
+  `https://moodle.htwg-konstanz.de/moodle/course/view.php?id=${course.meta.moodleId}`;
 </script>
 
 <template>
   <a
     class="block ring-0 mt-3 px-6 py-4 rounded-lg transition-shadow bg-slate-50 dark:bg-neutral-800 shadow hover:ring-2 w-full"
     :style="randomDarkRingColor()"
-    :href="`https://moodle.htwg-konstanz.de/moodle/course/view.php?id=${course.id}`"
+    :href="getHref(course)"
   >
     <p class="dark:text-neutral-200">{{ course.name }}</p>
-    <p class="text-slate-400 dark:text-neutral-500">id: {{ course.id }}</p>
+    <p v-if="course.meta.moodleId" class="text-slate-400 dark:text-neutral-500">id: {{ course.meta.moodleId }}</p>
+    <p v-if="course.meta.link" class="text-slate-400 dark:text-neutral-500">{{ course.meta.link}}</p>
   </a>
 </template>
