@@ -7,7 +7,7 @@ import type { Course as CourseType } from "../types/Course";
 
 const props = defineProps<{ initCourses: CourseType[] }>();
 
-const { search, courses } = useSearch(props.initCourses);
+const { search, courses, emptySearch, fuseResults } = useSearch(props.initCourses);
 
 const goTo = () => {
   if (courses.value[0]?.meta.moodleId) {
@@ -25,9 +25,10 @@ const goTo = () => {
       <div class="relative">
         <TransitionGroup>
           <CourseLink
-            v-for="course of courses"
+            v-for="(course, index) of courses"
             :course="course"
             :key="course.meta.moodleId ?? course.meta.link"
+            :style="index === 0 || emptySearch ? `` : `opacity: ${Math.max(1 - (fuseResults?.[index]?.score ?? 0), 0.3)};`"
           />
         </TransitionGroup>
       </div>
