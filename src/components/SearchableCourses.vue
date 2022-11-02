@@ -4,8 +4,12 @@ import SearchBar from "./SearchBar.vue";
 
 import { useSearch } from "../composites/useSearch";
 import type { Course as CourseType } from "../types/Course";
+import { toRef } from "vue";
 
 const props = defineProps<{ initCourses: CourseType[] }>();
+
+console.log();
+
 
 const { search, courses } = useSearch(props.initCourses);
 

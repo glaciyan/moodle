@@ -1,5 +1,5 @@
 import { onMounted, ref } from "vue";
-import { Course as CourseType } from "../types/Course";
+import { Course, Course as CourseType } from "../types/Course";
 import { z } from "zod";
 
 const CourseSchema = z.object({
@@ -10,7 +10,7 @@ const CourseSchema = z.object({
 const CourseListSchema = z.array(CourseSchema);
 
 export function useFetchCourses() {
-  const allCourses = ref<{ name: string; id: number }[] | null>(null);
+  const allCourses = ref<Course[] | null>(null);
   const isLoading = ref(false);
   const errorMessage = ref<string | null>(null);
 
