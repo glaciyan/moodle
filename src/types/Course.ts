@@ -1,4 +1,4 @@
 export type Course = {
-  name: string,
-  id: number
-}
+  name: string;
+  meta: ({ moodleId?: number , link?: string }) & { tags?: string[] };
+};
