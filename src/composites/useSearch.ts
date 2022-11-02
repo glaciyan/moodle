@@ -27,7 +27,6 @@ export function useSearch(data: Course[]) {
         fuse = new Fuse(data, {
           keys: ["name"],
           includeScore: true,
-          threshold: 0.5
         });
       }
 
