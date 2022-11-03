@@ -2,12 +2,19 @@ import { onMounted, ref } from "vue";
 import { Course, Course as CourseType } from "../types/Course";
 import { z } from "zod";
 
-const CourseSchema = z.object({
-  name: z.string(),
-  id: z.number(),
-});
-
-const CourseListSchema = z.array(CourseSchema);
+const CourseSchema = z
+  .object({
+    name: z.string(),
+    meta: z.union([
+      z.object({
+        moodleId: z.number(),
+      }),
+      z.object({
+        link: z.string().url(),
+      }),
+    ]),
+  })
+  .array();
 
 export function useFetchCourses() {
   const allCourses = ref<Course[] | null>(null);
@@ -20,8 +27,8 @@ export function useFetchCourses() {
     if (customCourseList) {
       try {
         const imported = JSON.parse(customCourseList);
-        const parsed = await CourseListSchema.parseAsync(imported);
-        allCourses.value = parsed;
+        const moodleIdParsed = await CourseSchema.parseAsync(imported);
+        allCourses.value = moodleIdParsed;
       } catch (error) {
         console.error(error);
         errorMessage.value =
@@ -35,14 +42,15 @@ export function useFetchCourses() {
         );
 
         if (result.ok) {
-          const parsed = await CourseListSchema.parseAsync(await result.json());
+          const parsed = await CourseSchema.parseAsync(await result.json());
           allCourses.value = parsed;
         } else {
           throw result.statusText;
         }
       } catch (error) {
         console.error(error);
-        errorMessage.value = "Eigener Link konnte nicht geladen werden. Schaue in der Konsole nach was schiefgelaufen ist.";
+        errorMessage.value =
+          "Eigener Link konnte nicht geladen werden. Schaue in der Konsole nach was schiefgelaufen ist.";
       }
     }
 

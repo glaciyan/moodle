@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Course from "./Course.vue";
+import CourseLink from "./CourseLink.vue";
 import SearchBar from "./SearchBar.vue";
 
 import { useSearch } from "../composites/useSearch";
@@ -14,10 +14,10 @@ console.log();
 const { search, courses } = useSearch(props.initCourses);
 
 const goTo = () => {
-  if (courses.value?.[0]) {
-    window.location.href = `https://moodle.htwg-konstanz.de/moodle/course/view.php?id=${courses.value[0].id}`;
-  } else if (props.initCourses !== null) {
-    window.location.href = `https://moodle.htwg-konstanz.de/moodle/course/view.php?id=${props.initCourses[0].id}`;
+  if (courses.value[0]?.meta.moodleId) {
+    window.location.href = `https://moodle.htwg-konstanz.de/moodle/course/view.php?id=${courses.value[0].meta.moodleId}`;
+  } else if (courses.value[0]?.meta.link) {
+    window.location.href = courses.value[0]?.meta.link;
   }
 };
 
@@ -36,7 +36,11 @@ onRenderTriggered((event) => {
     <div class="min-h-screen">
       <div class="relative">
         <TransitionGroup>
-          <Course v-for="course of courses" :course="course" :key="course.id" />
+          <CourseLink
+            v-for="course of courses"
+            :course="course"
+            :key="course.meta.moodleId ?? course.meta.link"
+          />
         </TransitionGroup>
       </div>
     </div>
