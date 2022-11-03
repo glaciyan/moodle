@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import SearchableCourses from "./components/SearchableCourses.vue";
-import TheLinks from "./components/TheLinks.vue";
 import Spinner from "./components/Spinner.vue";
+import TheLinks from "./components/TheLinks.vue";
 import { useFetchCourses } from "./composites/useFetchCoures";
-import { ref } from "vue";
 
 const { allCourses, isLoading, errorMessage } = useFetchCourses();
 const clearCustom = (window as any)._moodle__clearCustom as () => void;
@@ -12,7 +11,9 @@ const test = () => {
   allCourses.value = [
     {
       name: "Test",
-      id: 1,
+      meta: {
+        moodleId: 1,
+      },
     },
   ];
 };
