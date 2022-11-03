@@ -4,7 +4,7 @@ import SearchBar from "./SearchBar.vue";
 
 import { useSearch } from "../composites/useSearch";
 import type { Course as CourseType } from "../types/Course";
-import { toRef } from "vue";
+import { onRenderTracked, onRenderTriggered, toRef, TransitionGroup } from "vue";
 
 const props = defineProps<{ initCourses: CourseType[] }>();
 
@@ -20,6 +20,14 @@ const goTo = () => {
     window.location.href = `https://moodle.htwg-konstanz.de/moodle/course/view.php?id=${props.initCourses[0].id}`;
   }
 };
+
+onRenderTracked((event) => {
+  debugger;
+});
+
+onRenderTriggered((event) => {
+  debugger;
+});
 </script>
 
 <template>
