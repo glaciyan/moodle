@@ -4,14 +4,11 @@ import SearchBar from "./SearchBar.vue";
 
 import { useSearch } from "../composites/useSearch";
 import type { Course as CourseType } from "../types/Course";
-import { onRenderTracked, onRenderTriggered, toRef, TransitionGroup } from "vue";
+import { computed, onRenderTracked, onRenderTriggered, toRef, TransitionGroup } from "vue";
 
 const props = defineProps<{ initCourses: CourseType[] }>();
 
-console.log();
-
-
-const { search, courses } = useSearch(props.initCourses);
+const { search, courses } = useSearch(toRef(props, "initCourses"));
 
 const goTo = () => {
   if (courses.value[0]?.meta.moodleId) {
@@ -21,13 +18,13 @@ const goTo = () => {
   }
 };
 
-onRenderTracked((event) => {
-  debugger;
-});
+// onRenderTracked((event) => {
+//   debugger;
+// });
 
-onRenderTriggered((event) => {
-  debugger;
-});
+// onRenderTriggered((event) => {
+//   debugger;
+// });
 </script>
 
 <template>
