@@ -2,9 +2,9 @@
 import CourseLink from "./CourseLink.vue";
 import SearchBar from "./SearchBar.vue";
 
+import { toRef, TransitionGroup } from "vue";
 import { useSearch } from "../composites/useSearch";
 import type { Course as CourseType } from "../types/Course";
-import { computed, onRenderTracked, onRenderTriggered, toRef, TransitionGroup } from "vue";
 
 const props = defineProps<{ initCourses: CourseType[] }>();
 
