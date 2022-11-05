@@ -6,17 +6,6 @@ import { useFetchCourses } from "./composites/useFetchCoures";
 
 const { allCourses, isLoading, errorMessage } = useFetchCourses();
 const clearCustom = (window as any)._moodle__clearCustom as () => void;
-
-const test = () => {
-  allCourses.value = [
-    {
-      name: "Test",
-      meta: {
-        moodleId: 1,
-      },
-    },
-  ];
-};
 </script>
 
 <template>
@@ -24,7 +13,6 @@ const test = () => {
     <div class="md:my-12 my-4">
       <h1 class="md:text-2xl text-xl dark:text-gray-50">Moodle Kurse</h1>
       <TheLinks />
-      <button class="dark:text-white" @click="test">Set test</button>
     </div>
     <p v-if="errorMessage" class="text-red-500 dark:text-red-300">
       {{ errorMessage }}
