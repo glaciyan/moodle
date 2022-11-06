@@ -38,10 +38,11 @@ const switchTheme = () => {
 </script>
 
 <template>
-  <a
+  <button
+    type="button"
     class="text-blue-400 hover:underline focus:underline cursor-pointer"
     @click="switchTheme"
   >
     {{ theme === null ? "os theme" : theme === "dark" ? "dark" : "light" }}
-  </a>
+  </button>
 </template>
