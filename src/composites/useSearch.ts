@@ -21,7 +21,11 @@ export function useSearch(data: Course[]) {
     if (!fuse) {
       const Fuse = (await import("fuse.js")).default;
       fuse = new Fuse(data, {
-        keys: ["name"]
+        keys: ["name", {
+          name: "meta.tags",
+          weight: 2
+        }],
+        includeScore: true
       });
     }
 
