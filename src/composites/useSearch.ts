@@ -42,7 +42,6 @@ export function useSearch(data: Ref<Course[]>) {
       }
 
       const result = fuse.search(value);
-      console.log(result);
 
       if (result.length === 0) {
         courses.value = [];
