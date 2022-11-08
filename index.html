@@ -3,8 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link ref="apple-touch-icon" href="/vite.svg" sizes="180x180" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HTWG Moodle Shortcuts</title>
+    <meta name="description" content="HTWG Moodle Shortcuts" />
     <script>
       if (
         localStorage.getItem("theme") === "dark" ||
@@ -17,12 +19,12 @@
       }
     </script>
     <script>
-      const setCustomCourseList = json => {
+      const setCustomCourseList = (json) => {
         localStorage.setItem("custom_course_list", json);
         window.location.pathname = "/";
       };
 
-      const setCustomCourseLink = link => {
+      const setCustomCourseLink = (link) => {
         localStorage.setItem("custom_course_link", link);
         window.location.pathname = "/";
       };
