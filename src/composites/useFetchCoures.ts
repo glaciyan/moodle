@@ -12,7 +12,9 @@ const CourseSchema = z
       z.object({
         link: z.string().url(),
       }),
-    ]),
+    ]).and(z.object({
+      tags: z.string().array().optional()
+    })),
   })
   .array();
 

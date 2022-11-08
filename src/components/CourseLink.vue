@@ -22,7 +22,7 @@ const getHref = (course: Course) =>
 
 <template>
   <a
-    class="block ring-0 mt-3 px-6 py-4 rounded-lg transition-shadow bg-slate-50 dark:bg-neutral-800 shadow hover:ring-2 w-full overflow-hidden"
+    class="block ring-0 mt-3 px-6 py-4 rounded-lg transition-shadow bg-slate-100 dark:bg-neutral-800 shadow hover:ring-2 w-full overflow-hidden"
     :style="randomDarkRingColor()"
     :href="getHref(course)"
   >
