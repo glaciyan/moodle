@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SearchableCourses from "./components/SearchableCourses.vue";
-import TheLinks from "./components/TheLinks.vue";
 import Spinner from "./components/Spinner.vue";
+import TheLinks from "./components/TheLinks.vue";
 import { useFetchCourses } from "./composites/useFetchCoures";
 
 const { allCourses, isLoading, errorMessage } = useFetchCourses();
@@ -15,7 +15,10 @@ const clearCustom = (window as any)._moodle__clearCustom as () => void;
       <TheLinks />
     </div>
     <p v-if="errorMessage" class="text-red-500 dark:text-red-300">
-      {{ errorMessage }} <button @click="clearCustom" class="text-blue-400 hover:underline">Löschen</button>
+      {{ errorMessage }}
+      <button @click="clearCustom" class="text-blue-400 hover:underline">
+        Löschen
+      </button>
     </p>
     <div v-else>
       <SearchableCourses

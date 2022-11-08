@@ -2,12 +2,13 @@
 import CourseLink from "./CourseLink.vue";
 import SearchBar from "./SearchBar.vue";
 
+import { toRef, TransitionGroup } from "vue";
 import { useSearch } from "../composites/useSearch";
 import type { Course as CourseType } from "../types/Course";
 
 const props = defineProps<{ initCourses: CourseType[] }>();
 
-const { search, courses } = useSearch(props.initCourses);
+const { search, courses } = useSearch(toRef(props, "initCourses"));
 
 const goTo = () => {
   if (courses.value[0]?.meta.moodleId) {
@@ -16,6 +17,14 @@ const goTo = () => {
     window.location.href = courses.value[0]?.meta.link;
   }
 };
+
+// onRenderTracked((event) => {
+//   debugger;
+// });
+
+// onRenderTriggered((event) => {
+//   debugger;
+// });
 </script>
 
 <template>
