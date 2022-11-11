@@ -38,13 +38,13 @@ export default defineConfig({
             type: "image/png",
           },
           {
-            src: "/maskable_icon_192.png",
+            src: "/maskable_icon_x192.png",
             sizes: "192x192",
             type: "image/png",
             purpose: "maskable",
           },
           {
-            src: "/maskable_icon_512.png",
+            src: "/maskable_icon_x512.png",
             sizes: "512x512",
             type: "image/png",
             purpose: "maskable",
