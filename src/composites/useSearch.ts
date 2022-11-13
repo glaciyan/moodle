@@ -17,6 +17,7 @@ export function useSearch(data: Ref<Course[]>) {
   watch(data, (newData) => {
     courses.value = newData;
     search.value = "";
+    fuse = undefined as any;
   });
 
   throttledWatch(
