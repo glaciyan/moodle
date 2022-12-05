@@ -2,13 +2,13 @@
 import CourseLink from "./CourseLink.vue";
 import SearchBar from "./SearchBar.vue";
 
-import { toRef, TransitionGroup } from "vue";
-import { useSearch } from "../composites/useSearch";
-import type { Course as CourseType } from "../types/Course";
+import {toRef, TransitionGroup} from "vue";
+import {useSearch} from "../composites/useSearch";
+import type {Course as CourseType} from "../types/Course";
 
 const props = defineProps<{ initCourses: CourseType[] }>();
 
-const { search, courses } = useSearch(toRef(props, "initCourses"));
+const {search, courses} = useSearch(toRef(props, "initCourses"));
 
 const goTo = () => {
   if (courses.value[0]?.meta.moodleId) {
@@ -18,25 +18,24 @@ const goTo = () => {
   }
 };
 
-// onRenderTracked((event) => {
-//   debugger;
-// });
+const encode = new TextEncoder();
 
-// onRenderTriggered((event) => {
-//   debugger;
-// });
+const hashText = async (text: string) => {
+  const encodedText = await crypto.subtle.digest("SHA-1", encode.encode(text));
+  return new Uint8Array(encodedText).reduce((accum, current) => accum.concat(current.toString(16)), "");
+}
 </script>
 
 <template>
   <div>
-    <SearchBar v-model="search" @keydown.enter="goTo" />
+    <SearchBar v-model="search" @keydown.enter="goTo"/>
     <div class="min-h-screen">
       <div class="relative">
         <TransitionGroup>
           <CourseLink
-            v-for="course of courses"
-            :course="course"
-            :key="course.meta.moodleId ?? course.meta.link"
+              v-for="course of courses"
+              :course="course"
+              :key="course.meta.moodleId ?? hashText(course.meta.link)"
           />
         </TransitionGroup>
       </div>
