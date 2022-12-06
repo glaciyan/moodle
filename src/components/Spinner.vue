@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref } from "vue";
 
 const show = ref(false);
 
 onMounted(() => {
-    setTimeout(() => {
-        show.value = true;
-    }, 700)
-})
+  setTimeout(() => {
+    show.value = true;
+  }, 700);
+});
 </script>
 
 <template>

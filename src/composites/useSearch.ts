@@ -1,6 +1,6 @@
 import type Fuse from "fuse.js";
-import { computed, isProxy, ref, unref, watch, watchEffect } from "vue";
 import type { Ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { throttledWatch } from "@vueuse/core";
 import type { Course } from "../types/Course";
 
@@ -35,10 +35,10 @@ export function useSearch(data: Ref<Course[]>) {
             "name",
             {
               name: "meta.tags",
-              weight: 2,
-            },
+              weight: 2
+            }
           ],
-          includeScore: true,
+          includeScore: true
         });
       }
 
@@ -51,7 +51,7 @@ export function useSearch(data: Ref<Course[]>) {
       }
     },
     {
-      throttle: 300,
+      throttle: 300
     }
   );
 

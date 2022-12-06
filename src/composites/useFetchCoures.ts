@@ -1,5 +1,5 @@
 import { onMounted, ref } from "vue";
-import { Course, Course as CourseType } from "../types/Course";
+import { Course } from "../types/Course";
 import { z } from "zod";
 
 const CourseSchema = z
@@ -7,14 +7,14 @@ const CourseSchema = z
     name: z.string(),
     meta: z.union([
       z.object({
-        moodleId: z.number(),
+        moodleId: z.number()
       }),
       z.object({
-        link: z.string().url(),
-      }),
+        link: z.string().url()
+      })
     ]).and(z.object({
       tags: z.string().array().optional()
-    })),
+    }))
   })
   .array();
 
@@ -29,8 +29,7 @@ export function useFetchCourses() {
     if (customCourseList) {
       try {
         const imported = JSON.parse(customCourseList);
-        const moodleIdParsed = await CourseSchema.parseAsync(imported);
-        allCourses.value = moodleIdParsed;
+        allCourses.value = await CourseSchema.parseAsync(imported);
       } catch (error) {
         console.error(error);
         errorMessage.value =
@@ -40,13 +39,13 @@ export function useFetchCourses() {
       try {
         const result = await fetch(
           localStorage.getItem("custom_course_link") ??
-            "https://moodle-worker-api.glaciyan.cc"
+          "https://moodle-worker-api.glaciyan.cc"
         );
 
         if (result.ok) {
-          const parsed = await CourseSchema.parseAsync(await result.json());
-          allCourses.value = parsed;
+          allCourses.value = await CourseSchema.parseAsync(await result.json());
         } else {
+          // noinspection ExceptionCaughtLocallyJS
           throw result.statusText;
         }
       } catch (error) {

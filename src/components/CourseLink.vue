@@ -28,6 +28,7 @@ const getHref = (course: Course) =>
   >
     <p class="dark:text-neutral-200">{{ course.name }}</p>
     <p v-if="course.meta.moodleId" class="text-slate-400 dark:text-neutral-500">id: {{ course.meta.moodleId }}</p>
-    <p v-if="course.meta.link" class="text-slate-400 dark:text-neutral-500 truncate hover:underline">{{ course.meta.link}}</p>
+    <p v-if="course.meta.link" class="text-slate-400 dark:text-neutral-500 truncate hover:underline">
+      {{ course.meta.link }}</p>
   </a>
 </template>
