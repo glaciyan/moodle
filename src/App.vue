@@ -9,7 +9,7 @@ const clearCustom = (window as any)._moodle__clearCustom as () => void;
 </script>
 
 <template>
-  <div class="max-w-md md:mx-auto mx-2 min-h-screen">
+  <div class="max-w-md sm:mx-auto mx-2 min-h-screen">
     <div class="md:my-12 my-4">
       <h1 class="md:text-2xl text-xl dark:text-gray-50">Moodle Kurse</h1>
       <TheLinks />
